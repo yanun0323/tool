@@ -6,7 +6,7 @@ A toolkit project provide some useful tool.
 Change yaml files with custom rule in one command.
 
 ### Usage
-Change the `tool/yaml_replacer.go` variable in the beginning.
+Change the `tool/yaml_replacer.go` variables in the top of file.
 
 Then run 
 ```bash 
