@@ -15,14 +15,14 @@ import (
 )
 
 var (
-	_dir                      = "/Users/hqcc-user14/Documents/Project/Helm/"
-	_includeRelativeDirRegexp = regexp.MustCompile("^esc-*")
-	_excludeRelativeDirRegexp = regexp.MustCompile("(esc-bo-gateway|esc-web|esc-wallet)")
-	_includeFileRegexp        = regexp.MustCompile(".*test.yaml$")
-	_excludeFileRegexp        = regexp.MustCompile(".*helmignore$")
-	_targetParentKey          = "db"
-	_targetKeys               = "maxIdleConns,maxOpenConns"
-	_targetValues             = "10,10"
+	_dir                      = "/Users/hqcc-user14/Documents/Project/Helm/"              /* 目標專案的 absolute path */
+	_includeRelativeDirRegexp = regexp.MustCompile("^esc-*")                              /* (包含)目標專案第一層子資料夾 */
+	_excludeRelativeDirRegexp = regexp.MustCompile("(esc-bo-gateway|esc-web|esc-wallet)") /* (排除)目標專案第一層子資料夾 */
+	_includeFilePathRegexp    = regexp.MustCompile(".*test.yaml$")                        /* (包含)檔案路徑 */
+	_excludeFilePathRegexp    = regexp.MustCompile(".*helmignore$")                       /* (排除)檔案路徑 */
+	_targetParentKey          = "db:"                                                     /* 要更改的 Key 的前綴 */
+	_targetKeys               = "maxIdleConns,maxOpenConns"                               /* 要更改的 Key (支援多個，使用','隔開) */
+	_targetValues             = "10,10"                                                   /* 對應上方順序，要更改的數值 (支援多個，使用','隔開) */
 )
 
 func YamlReplacer(ctx context.Context) {
@@ -167,8 +167,8 @@ func isTargetRelativeDir(relativeDir string) bool {
 }
 
 func isTargetFile(filename string) bool {
-	return _includeFileRegexp.MatchString(filename) &&
-		!_excludeFileRegexp.MatchString(filename)
+	return _includeFilePathRegexp.MatchString(filename) &&
+		!_excludeFilePathRegexp.MatchString(filename)
 
 }
 
