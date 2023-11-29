@@ -5,8 +5,15 @@ A toolkit project provide some useful tool.
 ## Yaml Replacer
 Change yaml files with custom rule in one command.
 
-#### Usage
+### Usage
 Change the `tool/yaml_replacer.go` variable in the beginning.
+
+Then run 
+```bash 
+$ make run.yaml.replacer 
+```
+
+#### Parameters
 ```go
 var (
 	_dir                      = "/Users/hqcc-user14/Documents/Project/Helm/"              /* 目標專案的 absolute path */
